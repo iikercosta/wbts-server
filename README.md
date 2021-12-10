@@ -1,2 +1,2 @@
 # wbts-server
-Wi-Fi and Bluetooth Tracking System
+Wi-Fi and Bluetooth Tracking System module
