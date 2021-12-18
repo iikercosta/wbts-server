@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+    />
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            crossorigin="anonymous"
+    />
+
+    <title>{% block title %}WBTS{% endblock %}</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand">WBTS</a>
+    </nav>
+
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <div class="col-2" id="green">
+                <a href="#">Link 1</a><br />
+                <br />
+                <a href="#">Link 2</a><br />
+                <br />
+                <a href="#">Link 3</a><br />
+                <br />
+                <a href="#">Link 4</a><br />
+                <br />
+            </div>
+            <div class="col-10" style="text-align: justify;">
+                {% block content %} {% endblock %}
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
