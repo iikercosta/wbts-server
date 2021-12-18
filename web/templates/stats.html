@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
+{% extends "base.html" %}
+
+{% block content %}
 
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -24,11 +25,11 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 //Read the data
-d3.csv("http://localhost:5000/get-devices?dev_type={{device_type}}",
+d3.csv("http://192.168.1.2:5000/get-devices?dev_type={{device_type}}&location={{location}}",
 
   // When reading the csv, I must format variables:
   function(d){
-    return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value }
+    return { date : d3.timeParse("%s")(d.date), value : d.value }
   },
 
   // Now I can use this dataset:
@@ -62,4 +63,8 @@ d3.csv("http://localhost:5000/get-devices?dev_type={{device_type}}",
 
 })
 
+
 </script>
+
+{% endblock %}
+

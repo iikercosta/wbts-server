@@ -1,7 +1,9 @@
+from datetime import datetime, timedelta
+
 import flask
 from flask import Blueprint, request
 
-from web.api.service.devices_service import register_devs, get_devices_by_type
+from web.api.service.devices_service import register_devs, get_devices_concurrence
 
 devices = Blueprint('devices', __name__)
 
@@ -19,9 +21,13 @@ def register_devices():
 
 @devices.route('/get-devices', methods=['GET'])
 def get_devices():
-
     dev_type = request.args.get('dev_type', type=str)
+    location = request.args.get('location', type=str)
 
-    data = get_devices_by_type(dev_type)
+    start = datetime(year=2021, month=12, day=13, hour=0, minute=0, second=0)
+    stop = datetime(year=2021, month=12, day=14, hour=0, minute=0, second=0)
+    delta = timedelta(seconds=120)
+
+    data = get_devices_concurrence(start, stop, delta, location, dev_type)
 
     return flask.Response(data, mimetype="text/csv", headers={"Content-disposition": "attachment;filename=data.csv"})
