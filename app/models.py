@@ -1,4 +1,4 @@
-from web import db
+from app import db
 
 
 class Location(db.Model):
