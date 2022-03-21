@@ -3,7 +3,7 @@ from flask import request
 
 from app import app
 from app.services import locations
-from app.services.devices import register_devs
+from app.services.devices import register_devs, devices_query
 
 
 @app.route("/", methods=['GET'])
@@ -18,38 +18,27 @@ def register_devices():
     if data:
         register_devs(data)
         return flask.Response(response='200')
-    else:
-        return flask.Response(response="400")
+
+    return flask.Response(response="400")
 
 
-@app.route('/search')
+@app.route('/search', methods=["POST"])
 def search():
-
     dev_types = ["IP", "BLUETOOTH LE", "BLUETOOTH BR/EDR"]
 
-    classes = []
+    classes = ["IP", "BLUETOOTH LE", "BLUETOOTH BR/EDR"]
 
     for location in locations.get_locations():
         for dev_type in dev_types:
-            classes.append(f"{location} {dev_type}")
+            classes.append(f"{dev_type} + {location}")
+
+    return flask.jsonify(classes)
 
 
-    return flask.jsonify()
-
-
-@app.route('/query')
+@app.route('/query', methods=["POST"])
 def query():
-    pass
+    data_query = request.get_json()
 
-if __name__ == '__main__':
-    dev_types = ["IP", "BLUETOOTH LE", "BLUETOOTH BR/EDR"]
-    locations = ["BILBAO", "DONONSTI", "GASTEIZ"]
+    response_data = devices_query(data_query)
 
-    classes = []
-
-    for location in locations:
-        for dev_type in dev_types:
-            classes.append(f"{location} + {dev_type}")
-
-
-    print(classes)
+    return flask.jsonify(response_data)
