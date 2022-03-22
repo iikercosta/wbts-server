@@ -41,8 +41,6 @@ def devices_query(data):
 
     for target in data["targets"]:
 
-        print(target)
-
         if len(target["target"].split("+", 1)) == 1:
             dev_type = target["target"]
             location = None
@@ -94,7 +92,7 @@ def get_data_points(dev, from_ts, to_ts, interval, location=None) -> List[List[i
 
                 current_ts_object += 1
 
-            data_points.append([ts_intervals[index], len(unique_devices)])
+            data_points.append([len(unique_devices), ts_intervals[index]*1000])
 
         except IndexError:
             break

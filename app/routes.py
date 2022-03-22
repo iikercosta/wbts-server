@@ -24,9 +24,9 @@ def register_devices():
 
 @app.route('/search', methods=["POST"])
 def search():
-    dev_types = ["IP", "BLUETOOTH LE", "BLUETOOTH BR/EDR"]
+    dev_types = ["IP", "BLUETOOTH_LE", "BLUETOOTH_BR_EDR"]
 
-    classes = ["IP", "BLUETOOTH LE", "BLUETOOTH BR/EDR"]
+    classes = ["IP", "BLUETOOTH_LE", "BLUETOOTH_BR_EDR"]
 
     for location in locations.get_locations():
         for dev_type in dev_types:
