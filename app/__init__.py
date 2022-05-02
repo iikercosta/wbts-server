@@ -10,7 +10,6 @@ DB_NAME = "database.db"
 
 
 def create_app():
-
     CORS(app)
 
     app.config['SECRET_KEY'] = 'secret'
